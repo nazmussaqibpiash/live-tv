@@ -76,6 +76,9 @@ function isDefinitelyDead(v?: ValidationResult): boolean {
   return v.status === "dead" || v.status === "timeout" || v.status === "invalid";
 }
 
+/** A source with this many user-reported playback failures is dropped entirely. */
+const REPORT_DROP_THRESHOLD = 2;
+
 interface ReportEntry {
   sourceId: string;
   fails: number;
@@ -114,6 +117,12 @@ export function mergeCatalog(
     const validation = validations.get(stream.url);
     if (isDefinitelyDead(validation)) continue;
 
+    const sid = sourceId(stream.url);
+    const reportFails = reports.get(sid) ?? 0;
+    // Drop sources users have repeatedly reported as broken — these are dead
+    // in practice even if a HEAD check happens to pass (geo/token/format issues).
+    if (reportFails >= REPORT_DROP_THRESHOLD) continue;
+
     const channelKey = channelDedupKey(stream.name);
     const { category, fromRule } = assignCategory(stream, rules);
     const quality = detectQuality(stream.name, stream.url);
@@ -137,10 +146,9 @@ export function mergeCatalog(
         })
       : 45;
 
-    const sid = sourceId(stream.url);
     // playback-failure feedback: each user-reported failure drops the score,
     // capped at -30 so a confirmed-good source can still recover over time.
-    const reportPenalty = Math.min(30, (reports.get(sid) ?? 0) * 10);
+    const reportPenalty = Math.min(30, reportFails * 10);
     const adjustedScore = Math.max(0, rankScore - reportPenalty);
 
     const source: ChannelSource = {

@@ -71,4 +71,6 @@ export interface SourceFeed {
   region: string;
   priority: number;
   maxChannels?: number;
+  /** consecutive crawl runs this feed returned no usable channels */
+  deadStreak?: number;
 }

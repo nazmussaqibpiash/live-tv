@@ -19,6 +19,10 @@ import type { SourceFeed } from "./types";
 const MIN_CHANNELS = 15;
 const MAX_NEW_PER_RUN = Number(process.env.CRAWL_MAX_NEW ?? 25);
 const CANDIDATE_TIMEOUT = 25000;
+/** prune an auto-discovered feed after this many consecutive empty/dead runs */
+const DEAD_STREAK_LIMIT = Number(process.env.CRAWL_DEAD_STREAK ?? 3);
+/** cap how many existing feeds we re-probe per run (keeps runtime bounded) */
+const PRUNE_CHECK_LIMIT = Number(process.env.CRAWL_PRUNE_CHECK ?? 60);
 
 // GitHub search queries that surface large, fresh IPTV playlists
 const GITHUB_QUERIES = [
@@ -113,6 +117,55 @@ async function verifyCandidate(url: string): Promise<number> {
   }
 }
 
+const KNOWN_URLS = new Set(KNOWN_CANDIDATES.map((c) => c.url));
+
+/**
+ * Re-probe a slice of auto-discovered feeds; bump deadStreak for empty/dead
+ * ones and DROP those that have failed DEAD_STREAK_LIMIT runs in a row. Curated
+ * KNOWN_CANDIDATES are never pruned (their maintainers fix them). Returns the
+ * pruned-and-updated registry.
+ */
+async function pruneRegistry(registry: SourceFeed[]): Promise<SourceFeed[]> {
+  // Only auto-discovered ("crawl-*") feeds are eligible for probing/pruning.
+  const eligible = registry.filter(
+    (f) => f.id.startsWith("crawl-") && !KNOWN_URLS.has(f.url),
+  );
+  const toProbe = eligible.slice(0, PRUNE_CHECK_LIMIT);
+  if (toProbe.length === 0) return registry;
+
+  const verdict = new Map<string, number>(); // feed.id -> channelCount
+  for (const feed of toProbe) {
+    verdict.set(feed.id, await verifyCandidate(feed.url));
+  }
+
+  const kept: SourceFeed[] = [];
+  let dropped = 0;
+  for (const feed of registry) {
+    if (!verdict.has(feed.id)) {
+      kept.push(feed);
+      continue;
+    }
+    const count = verdict.get(feed.id)!;
+    if (count >= MIN_CHANNELS) {
+      // healthy again — reset the streak
+      kept.push({ ...feed, deadStreak: 0 });
+    } else {
+      const streak = (feed.deadStreak ?? 0) + 1;
+      if (streak >= DEAD_STREAK_LIMIT) {
+        dropped++;
+        console.log(`[crawl] - pruned ${feed.id} (dead ${streak} runs)`);
+      } else {
+        kept.push({ ...feed, deadStreak: streak });
+      }
+    }
+  }
+
+  if (dropped > 0) {
+    console.log(`[crawl] Pruned ${dropped} dead feeds`);
+  }
+  return kept;
+}
+
 export async function runCrawl(): Promise<number> {
   const registryPath = dataPath("source-registry.json");
   const registry = readJsonFile<SourceFeed[]>(registryPath);
@@ -166,6 +219,18 @@ export async function runCrawl(): Promise<number> {
     console.log(`[crawl] Added ${added.length} new sources (total ${updated.length})`);
   } else {
     console.log("[crawl] No new valid sources this run");
+  }
+
+  // Prune auto-discovered feeds that have gone dead so the registry stays lean
+  // and discover() doesn't waste time on permanently-broken playlists.
+  try {
+    const base = readJsonFile<SourceFeed[]>(registryPath);
+    const pruned = await pruneRegistry(base);
+    if (pruned.length !== base.length || JSON.stringify(pruned) !== JSON.stringify(base)) {
+      writeJsonFile(registryPath, pruned);
+    }
+  } catch (err) {
+    console.warn("[crawl] prune skipped:", String(err));
   }
 
   return added.length;
