@@ -1,0 +1,86 @@
+{
+  "a0d7af0f033fc6ea": {
+    "sourceId": "a0d7af0f033fc6ea",
+    "channelId": "cinemax",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T10:10:02.967Z"
+  },
+  "ae1b942b27c5367f": {
+    "sourceId": "ae1b942b27c5367f",
+    "channelId": "cinemax",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T10:10:03.632Z"
+  },
+  "8b70b71775c3d47e": {
+    "sourceId": "8b70b71775c3d47e",
+    "channelId": "animal-planet",
+    "fails": 2,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T10:18:55.844Z"
+  },
+  "23c102ad18557f8a": {
+    "sourceId": "23c102ad18557f8a",
+    "channelId": "animal-planet",
+    "fails": 2,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T10:19:10.295Z"
+  },
+  "5c52fc967b2dd0b4": {
+    "sourceId": "5c52fc967b2dd0b4",
+    "channelId": "animal-planet",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-14T10:19:09.847Z"
+  },
+  "b629dd463886bc49": {
+    "sourceId": "b629dd463886bc49",
+    "channelId": "saudia-arabia",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-14T10:24:00.938Z"
+  },
+  "db518b5bae48c405": {
+    "sourceId": "db518b5bae48c405",
+    "channelId": "sci-fi",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-14T10:36:27.684Z"
+  },
+  "fa145f02e6be149b": {
+    "sourceId": "fa145f02e6be149b",
+    "channelId": "cartoon-network-uk",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T12:46:18.961Z"
+  },
+  "c9bca7ec912f3b92": {
+    "sourceId": "c9bca7ec912f3b92",
+    "channelId": "cartoon-network-ca",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T12:46:39.720Z"
+  },
+  "2f7ddefedb63b3d4": {
+    "sourceId": "2f7ddefedb63b3d4",
+    "channelId": "bbc-lifestyle",
+    "fails": 277,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T13:41:49.031Z"
+  },
+  "bc493fdb3c236296": {
+    "sourceId": "bc493fdb3c236296",
+    "channelId": "adventure-sports-tv",
+    "fails": 4,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-14T13:55:47.214Z"
+  },
+  "3fae5b83eb936cd6": {
+    "sourceId": "3fae5b83eb936cd6",
+    "channelId": "picture",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-14T13:51:40.421Z"
+  }
+}

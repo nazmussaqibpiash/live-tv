@@ -1,0 +1,19 @@
+name = "live-tv-api"
+main = "worker/src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+ALLOWED_ORIGINS = "*"
+HLS_PROXY_ENABLED = "false"
+
+[[kv_namespaces]]
+binding = "CATALOG"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "live-tv"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[observability]
+enabled = true

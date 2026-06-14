@@ -1,0 +1,96 @@
+{
+  "categories": [
+    { "id": "sports", "label": "Sports", "order": 1 },
+    { "id": "news", "label": "News", "order": 2 },
+    { "id": "movies", "label": "Movies", "order": 3 },
+    { "id": "entertainment", "label": "Entertainment", "order": 4 },
+    { "id": "kids", "label": "Kids", "order": 5 },
+    { "id": "music", "label": "Music", "order": 6 },
+    { "id": "documentary", "label": "Documentary", "order": 7 },
+    { "id": "religious", "label": "Religious", "order": 8 },
+    { "id": "bangladesh", "label": "Bangladesh", "order": 9 },
+    { "id": "india", "label": "India", "order": 10 },
+    { "id": "pakistan", "label": "Pakistan", "order": 11 },
+    { "id": "international", "label": "World", "order": 12 }
+  ],
+  "rules": [
+    {
+      "category": "bangladesh",
+      "patterns": [
+        "somoy", "jamuna tv", "channel i", "channel 24", "channel 9", "ekattor", "ekushey", "dbc news", "independent tv", "rtv", "ntv", "ntv bangla", "gtv", "gazi tv", "maasranga", "deepto", "deepto tv", "boishakhi", "nagorik", "mohona", "my tv", "bangla vision", "banglavision", "atn bangla", "atn news", "asian tv", "bijoy tv", "btv", "bangladesh television", "sangsad", "duronto", "t sports", "globaltv bangla", "news24 bangla", "ekhon tv", "kalbela", "desh tv", "deshi tv", "green tv", "anando tv", "bangla tv", "sa tv"
+      ]
+    },
+    {
+      "category": "pakistan",
+      "patterns": [
+        "geo tv", "geo news", "ary", "ary news", "ary digital", "hum tv", "hum news", "express news pk", "samaa", "dunya news", "ptv", "bol news", "92 news", "abb takk", "neo tv", "gnn pk", "lahore news", "ten sports pk", "ptv sports"
+      ]
+    },
+    {
+      "category": "india",
+      "patterns": [
+        "aaj tak", "ndtv india", "zee tv", "zee news", "star plus", "star jalsha", "star maa", "sony tv", "sony sab", "colors", "sun tv", "sun news", "star vijay", "zee bangla", "zee tamil", "zee telugu", "zee kannada", "zee marathi", "star sports india", "&tv", "republic", "india today", "abp", "tv9", "etv", "gemini tv", "asianet", "maa tv", "udaya tv", "polimer", "kalaignar", "jaya tv", "puthiya", "bharat samachar", "balle balle", "ayush tv", "bhakti tv", "sun music", "raj tv", "kairali"
+      ]
+    },
+    {
+      "category": "sports",
+      "patterns": [
+        "sport", "sports", "cricket", "football", "soccer", "bein", " espn", "espn ", "willow", "star sports", "ten sports", "sony ten", "sony sports", "f1", "formula 1", "nba", "nfl", "nhl", "mlb", "uefa", "premier league", "laliga", "la liga", "fifa", "wwe", "ufc", "tennis", "golf", "rugby", "motogp", "supersport", "fox sports", "sky sports", "dazn", "t sports", "ptv sports"
+      ]
+    },
+    {
+      "category": "news",
+      "patterns": [
+        "news", "cnn", "bbc", "bbc news", "al jazeera", "sky news", "fox news", "msnbc", "nbc news", "cbs news", "abc news", "cnbc", "bloomberg", "france 24", "dw ", "euronews", "rt news", "cgtn", "wion", "trt world", "arirang", "channel news", "newsmax", "gb news", "al arabiya", "asharq"
+      ]
+    },
+    {
+      "category": "kids",
+      "patterns": [
+        "kids", "cartoon", "nick ", "nickelodeon", "nick jr", "disney jr", "disney junior", "disney channel", "pogo", "cbeebies", "baby tv", "babytv", "boomerang", "cartoonito", "pbs kids", "duronto", "toon", "chuchu", "junior"
+      ]
+    },
+    {
+      "category": "movies",
+      "patterns": [
+        "movie", "movies", "cinema", "cinemax", "hbo", "star gold", "sony max", "&flix", "and flix", "&pictures", "and picture", "zee cinema", "b4u movies", "mgm", "filmbox", "moviesphere", "sony pix", "utv movies", "colors cineplex", "star movies", "paramount", "screen", "action tv", "thriller tv", "drama tv"
+      ]
+    },
+    {
+      "category": "music",
+      "patterns": [
+        "music", "mtv", "vh1", "9xm", "9x ", "b4u music", "mtunes", "music india", "sun music", "raaga", "mastiii", "zoom", "zing", "channel v", "trace", "kiss tv", "club mtv", "bollywood 4u"
+      ]
+    },
+    {
+      "category": "religious",
+      "patterns": [
+        "islam", "islamic", "quran", "qur'an", "makkah", "madinah", "mecca", "sunnah", "peace tv", "iqraa", "gospel", "church", "jesus", "christian", "bhakti", "aastha", "sanskar", "angel tv", "god tv", "ewtn", "daystar", "shalom", "katholische", "hillsong", "aradana"
+      ]
+    },
+    {
+      "category": "documentary",
+      "patterns": [
+        "discovery", "national geographic", "nat geo", "animal planet", "history", "smithsonian", "documentary", "love nature", "curiositystream", "pbs", "bbc earth", "da vinci", "travel", "science", "nature"
+      ]
+    },
+    {
+      "category": "entertainment",
+      "patterns": [
+        "entertainment", "drama", "serial", "lifestyle", "food network", "comedy", "sitcom", "reality", "e! ", "tlc", "fashion", "fyi", "hgtv"
+      ]
+    }
+  ],
+  "feedRegionMap": {
+    "bdix": "international",
+    "bd": "bangladesh",
+    "in": "india",
+    "us": "international",
+    "sports": "sports",
+    "news": "news",
+    "kids": "kids",
+    "movies": "movies",
+    "music": "music",
+    "entertainment": "entertainment"
+  }
+}

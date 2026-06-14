@@ -1,19 +1,37 @@
 {
   "name": "live-tv",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pipeline:crawl": "tsx pipeline/crawl.ts",
+    "pipeline:discover": "tsx pipeline/discover.ts",
+    "pipeline:logos": "tsx pipeline/enrich-logos.ts",
+    "pipeline:epg": "tsx pipeline/epg.ts",
+    "pipeline:validate": "tsx pipeline/validate-run.ts",
+    "pipeline:merge": "tsx pipeline/merge.ts",
+    "pipeline:all": "tsx pipeline/run-all.ts",
+    "pipeline:publish-kv": "tsx pipeline/publish-kv.ts",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy"
   },
   "dependencies": {
+    "@tanstack/react-virtual": "^3.14.2",
+    "clsx": "^2.1.1",
+    "hls.js": "^1.6.16",
+    "lucide-react": "^1.18.0",
     "next": "16.2.9",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250417.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -21,6 +39,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.19.4",
+    "typescript": "^5",
+    "vitest": "^4.1.8",
+    "wrangler": "^4.14.0"
   }
 }

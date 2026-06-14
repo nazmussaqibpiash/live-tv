@@ -1,0 +1,338 @@
+[
+  {
+    "id": "mrgify-bdix",
+    "name": "Mrgify BDIX IPTV",
+    "url": "https://raw.githubusercontent.com/abusaeeidx/Mrgify-BDIX-IPTV/main/playlist.m3u",
+    "type": "m3u",
+    "region": "bdix",
+    "priority": 10
+  },
+  {
+    "id": "scraper-zilla",
+    "name": "IPTV Scraper Zilla",
+    "url": "https://raw.githubusercontent.com/abusaeeidx/IPTV-Scraper-Zilla/main/combined-playlist.m3u",
+    "type": "m3u",
+    "region": "bdix",
+    "priority": 9
+  },
+  {
+    "id": "tvlink-bd",
+    "name": "Dekho Prime TVLink",
+    "url": "https://raw.githubusercontent.com/imShakil/tvlink/refs/heads/main/iptv.m3u8",
+    "type": "m3u",
+    "region": "bdix",
+    "priority": 9
+  },
+  {
+    "id": "filoox-bdix",
+    "name": "Filoox BDIX Selected",
+    "url": "https://raw.githubusercontent.com/v5on/filoox-bdix-selected/main/playlist.m3u",
+    "type": "m3u",
+    "region": "bdix",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-bd",
+    "name": "IPTV-org Bangladesh",
+    "url": "https://iptv-org.github.io/iptv/countries/bd.m3u",
+    "type": "m3u",
+    "region": "bd",
+    "priority": 10
+  },
+  {
+    "id": "iptv-org-in",
+    "name": "IPTV-org India",
+    "url": "https://iptv-org.github.io/iptv/countries/in.m3u",
+    "type": "m3u",
+    "region": "in",
+    "priority": 10
+  },
+  {
+    "id": "iptv-org-pk",
+    "name": "IPTV-org Pakistan",
+    "url": "https://iptv-org.github.io/iptv/countries/pk.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-us",
+    "name": "IPTV-org USA",
+    "url": "https://iptv-org.github.io/iptv/countries/us.m3u",
+    "type": "m3u",
+    "region": "us",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-uk",
+    "name": "IPTV-org UK",
+    "url": "https://iptv-org.github.io/iptv/countries/uk.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-ca",
+    "name": "IPTV-org Canada",
+    "url": "https://iptv-org.github.io/iptv/countries/ca.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-ae",
+    "name": "IPTV-org UAE",
+    "url": "https://iptv-org.github.io/iptv/countries/ae.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-sa",
+    "name": "IPTV-org Saudi Arabia",
+    "url": "https://iptv-org.github.io/iptv/countries/sa.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-qa",
+    "name": "IPTV-org Qatar",
+    "url": "https://iptv-org.github.io/iptv/countries/qa.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-tr",
+    "name": "IPTV-org Turkey",
+    "url": "https://iptv-org.github.io/iptv/countries/tr.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-id",
+    "name": "IPTV-org Indonesia",
+    "url": "https://iptv-org.github.io/iptv/countries/id.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-my",
+    "name": "IPTV-org Malaysia",
+    "url": "https://iptv-org.github.io/iptv/countries/my.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-np",
+    "name": "IPTV-org Nepal",
+    "url": "https://iptv-org.github.io/iptv/countries/np.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-lk",
+    "name": "IPTV-org Sri Lanka",
+    "url": "https://iptv-org.github.io/iptv/countries/lk.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-sports",
+    "name": "IPTV-org Sports",
+    "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
+    "type": "m3u",
+    "region": "sports",
+    "priority": 10
+  },
+  {
+    "id": "iptv-org-news",
+    "name": "IPTV-org News",
+    "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
+    "type": "m3u",
+    "region": "news",
+    "priority": 9
+  },
+  {
+    "id": "iptv-org-kids",
+    "name": "IPTV-org Kids",
+    "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
+    "type": "m3u",
+    "region": "kids",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-movies",
+    "name": "IPTV-org Movies",
+    "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
+    "type": "m3u",
+    "region": "movies",
+    "priority": 9
+  },
+  {
+    "id": "iptv-org-music",
+    "name": "IPTV-org Music",
+    "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
+    "type": "m3u",
+    "region": "music",
+    "priority": 7
+  },
+  {
+    "id": "iptv-org-entertainment",
+    "name": "IPTV-org Entertainment",
+    "url": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
+    "type": "m3u",
+    "region": "entertainment",
+    "priority": 9
+  },
+  {
+    "id": "iptv-org-documentary",
+    "name": "IPTV-org Documentary",
+    "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 7
+  },
+  {
+    "id": "iptv-org-general",
+    "name": "IPTV-org General",
+    "url": "https://iptv-org.github.io/iptv/categories/general.m3u",
+    "type": "m3u",
+    "region": "entertainment",
+    "priority": 7
+  },
+  {
+    "id": "iptv-org-religious",
+    "name": "IPTV-org Religious",
+    "url": "https://iptv-org.github.io/iptv/categories/religious.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-lifestyle",
+    "name": "IPTV-org Lifestyle",
+    "url": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
+    "type": "m3u",
+    "region": "entertainment",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-business",
+    "name": "IPTV-org Business",
+    "url": "https://iptv-org.github.io/iptv/categories/business.m3u",
+    "type": "m3u",
+    "region": "news",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-comedy",
+    "name": "IPTV-org Comedy",
+    "url": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
+    "type": "m3u",
+    "region": "entertainment",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-lang-ben",
+    "name": "IPTV-org Bengali (language)",
+    "url": "https://iptv-org.github.io/iptv/languages/ben.m3u",
+    "type": "m3u",
+    "region": "mixed",
+    "priority": 9
+  },
+  {
+    "id": "iptv-org-lang-hin",
+    "name": "IPTV-org Hindi (language)",
+    "url": "https://iptv-org.github.io/iptv/languages/hin.m3u",
+    "type": "m3u",
+    "region": "in",
+    "priority": 8
+  },
+  {
+    "id": "iptv-org-lang-urd",
+    "name": "IPTV-org Urdu (language)",
+    "url": "https://iptv-org.github.io/iptv/languages/urd.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-lang-ara",
+    "name": "IPTV-org Arabic (language)",
+    "url": "https://iptv-org.github.io/iptv/languages/ara.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 6
+  },
+  {
+    "id": "iptv-org-lang-tam",
+    "name": "IPTV-org Tamil (language)",
+    "url": "https://iptv-org.github.io/iptv/languages/tam.m3u",
+    "type": "m3u",
+    "region": "in",
+    "priority": 6
+  },
+  {
+    "id": "free-tv-master",
+    "name": "Free-TV IPTV Master",
+    "url": "https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8",
+    "type": "m3u",
+    "region": "international",
+    "priority": 7
+  },
+  {
+    "id": "crawl-iptv-org-github-io-iptv-index",
+    "name": "Auto: iptv/index.m3u",
+    "url": "https://iptv-org.github.io/iptv/index.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  },
+  {
+    "id": "crawl-iptv-org-github-io-iptv-index-country",
+    "name": "Auto: iptv/index.country.m3u",
+    "url": "https://iptv-org.github.io/iptv/index.country.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-mariko578-iptv-master-pl",
+    "name": "Auto: MARIKO578/IPTV",
+    "url": "https://raw.githubusercontent.com/MARIKO578/IPTV/master/playlist.m3u8",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-ashik4u-mrgify-clean-mai",
+    "name": "Auto: ashik4u/mrgify-clean",
+    "url": "https://raw.githubusercontent.com/ashik4u/mrgify-clean/main/playlist.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-denxvofficial-iptv-main-",
+    "name": "Auto: denxvofficial/IPTV",
+    "url": "https://raw.githubusercontent.com/denxvofficial/IPTV/main/iptv.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-saqe-streampk-main-playl",
+    "name": "Auto: saqe/streampk",
+    "url": "https://raw.githubusercontent.com/saqe/streampk/main/playlist.m3u8",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5
+  }
+]

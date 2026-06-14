@@ -24,6 +24,16 @@
 .DS_Store
 *.pem
 
+# pipeline temp — keep validation state + reports in git for CI continuity
+/data/pipeline/*
+!/data/pipeline/state.json
+!/data/pipeline/validations.json
+!/data/pipeline/reports.json
+# generated logo enrichment map (rebuilt by pipeline:logos)
+/data/logo-map.json
+# allow crawl registry to persist discoveries across CI runs
+!/data/source-registry.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -35,6 +45,13 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# cloudflare (wrangler + next-on-pages)
+.wrangler/
+.dev.vars
+.vars
+/.vercel/output
+/public/data/kv-bulk.json
 
 # typescript
 *.tsbuildinfo

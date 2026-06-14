@@ -1,0 +1,57 @@
+name: IPTV Pipeline
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      step:
+        description: "Pipeline step (all, discover, validate, merge)"
+        required: false
+        default: "all"
+
+concurrency:
+  group: iptv-pipeline
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run pipeline
+        env:
+          PIPELINE_STEP: ${{ github.event.inputs.step || 'all' }}
+          MAX_VALIDATE: "0"
+          VALIDATE_BATCH_SIZE: "2500"
+          VALIDATE_CONCURRENCY: "60"
+          VALIDATE_TIMEOUT_MS: "7000"
+          CRAWL_MAX_NEW: "20"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run pipeline:all
+
+      - name: Generate KV bulk file
+        run: npm run pipeline:publish-kv
+
+      - name: Commit catalog updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/catalog.json public/data/kv-bulk.json public/data/epg.json \
+            data/pipeline/state.json data/pipeline/validations.json data/pipeline/reports.json \
+            data/source-registry.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(pipeline): auto-update channel catalog"
+          git push

@@ -1,0 +1,38 @@
+{
+  "events": [
+    {
+      "id": "world-cup",
+      "label": "🏆 World Cup",
+      "active": true,
+      "matchPatterns": [
+        "world cup",
+        "fifa",
+        "sports",
+        "ten sports",
+        "star sports",
+        "sony sports",
+        "t sports",
+        "willow",
+        "supersport",
+        "bein"
+      ],
+      "categoryHint": "sports"
+    },
+    {
+      "id": "cricket",
+      "label": "🏏 Cricket Live",
+      "active": true,
+      "matchPatterns": [
+        "cricket",
+        "willow",
+        "star sports",
+        "ten sports",
+        "t sports",
+        "ptv sports",
+        "sony sports",
+        "gazi tv"
+      ],
+      "categoryHint": "sports"
+    }
+  ]
+}
