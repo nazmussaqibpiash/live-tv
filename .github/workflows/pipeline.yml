@@ -60,10 +60,12 @@ jobs:
           git push
 
       # ---- Publish fresh catalog to Cloudflare so the live app updates ----
+      # Use the API worker's KV binding explicitly (repo also has a frontend
+      # wrangler.jsonc, so we must point wrangler at wrangler.toml).
       - name: Publish catalog to Cloudflare KV
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
-        run: npx wrangler kv bulk put public/data/kv-bulk.json --binding=CATALOG --remote
+        run: npx wrangler kv bulk put public/data/kv-bulk.json --binding=CATALOG --remote --config wrangler.toml
 
-      - name: Deploy worker
+      - name: Deploy API worker
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
-        run: npx wrangler deploy
+        run: npx wrangler deploy --config wrangler.toml

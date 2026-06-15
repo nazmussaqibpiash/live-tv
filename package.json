@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
@@ -18,7 +18,10 @@
     "pipeline:all": "tsx pipeline/run-all.ts",
     "pipeline:publish-kv": "tsx pipeline/publish-kv.ts",
     "worker:dev": "wrangler dev",
-    "worker:deploy": "wrangler deploy"
+    "worker:deploy": "wrangler deploy",
+    "web:build": "opennextjs-cloudflare build",
+    "web:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "web:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.2",
@@ -32,6 +35,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250417.0",
+    "@opennextjs/cloudflare": "^1.19.11",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

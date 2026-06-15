@@ -33,3 +33,7 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// OpenNext (Cloudflare) — enables Cloudflare bindings during `next dev`.
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();

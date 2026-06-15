@@ -1,0 +1,23 @@
+{
+  // Frontend (Next.js via OpenNext). This is SEPARATE from the API worker
+  // defined in wrangler.toml (live-tv-api). Deploy with:
+  //   npx opennextjs-cloudflare build && npx opennextjs-cloudflare deploy
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "live-tv-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Custom domain — provisioned automatically on deploy.
+  "routes": [{ "pattern": "tv.jetixautomation.com", "custom_domain": true }],
+  "vars": {
+    // Point the frontend's server-side API routes at the deployed API worker.
+    "NEXT_PUBLIC_WORKER_URL": "https://tv-api.jetixautomation.com"
+  }
+}

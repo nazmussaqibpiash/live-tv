@@ -47,12 +47,14 @@ yarn-error.log*
 # vercel
 .vercel
 
-# cloudflare (wrangler + next-on-pages)
+# cloudflare (wrangler + opennext)
 .wrangler/
 .dev.vars
 .vars
 /.vercel/output
 /public/data/kv-bulk.json
+# opennext build output
+/.open-next/
 
 # typescript
 *.tsbuildinfo

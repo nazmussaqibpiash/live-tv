@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { filterCatalog, getCatalog, getCatalogIndex } from "@/lib/catalog";
+import { proxyToWorker } from "@/lib/worker-proxy";
 
 export async function GET(request: NextRequest) {
+  // Prefer the edge API worker (paginated, KV-backed). Falls back to the local
+  // catalog file in dev / on platforms with filesystem access.
+  const proxied = await proxyToWorker(request, "/api/channels");
+  if (proxied) return proxied;
+
   const catalog = await getCatalog();
 
   if (!catalog) {

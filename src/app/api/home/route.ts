@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { getCatalog } from "@/lib/catalog";
+import { proxyToWorker } from "@/lib/worker-proxy";
 import type { ApiChannel, CatalogPayload } from "@/lib/types";
 
 const RAIL_SIZE = 20;
@@ -112,7 +113,10 @@ function buildRails(catalog: CatalogPayload): HomeRail[] {
   return rails;
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const proxied = await proxyToWorker(request, "/api/home");
+  if (proxied) return proxied;
+
   const catalog = await getCatalog();
   if (!catalog) {
     return NextResponse.json(

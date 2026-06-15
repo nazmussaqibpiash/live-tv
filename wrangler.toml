@@ -2,6 +2,12 @@ name = "live-tv-api"
 main = "worker/src/index.ts"
 compatibility_date = "2024-12-01"
 
+# Custom domain — Cloudflare provisions the DNS record + cert automatically
+# on deploy (jetixautomation.com must be an active zone on this account).
+routes = [
+  { pattern = "tv-api.jetixautomation.com", custom_domain = true }
+]
+
 [vars]
 ALLOWED_ORIGINS = "*"
 HLS_PROXY_ENABLED = "false"

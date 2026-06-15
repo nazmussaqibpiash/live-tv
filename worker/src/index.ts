@@ -128,6 +128,66 @@ function filterCatalog(
   return { categories: catalog.categories, channels };
 }
 
+const RAIL_SIZE = 20;
+const HOME_STATUS_ORDER: Record<string, number> = {
+  active: 0,
+  degraded: 1,
+  offline: 2,
+};
+
+function homeRankSort(a: ApiChannel, b: ApiChannel): number {
+  const sa = HOME_STATUS_ORDER[a.status] ?? 9;
+  const sb = HOME_STATUS_ORDER[b.status] ?? 9;
+  if (sa !== sb) return sa - sb;
+  return (b.sources[0]?.rankScore ?? 0) - (a.sources[0]?.rankScore ?? 0);
+}
+
+interface HomeRail {
+  id: string;
+  label: string;
+  channels: ApiChannel[];
+}
+
+// Mirror of src/app/api/home buildRails (minus filesystem-based seasonal
+// config, which isn't available in the worker runtime).
+function buildHomeRails(catalog: CatalogPayload): HomeRail[] {
+  const channels = catalog.channels.filter(
+    (c) => c.status === "active" || c.status === "degraded",
+  );
+  const rails: HomeRail[] = [];
+
+  const bdix = channels
+    .filter((c) => c.isBdix && c.status === "active")
+    .sort(homeRankSort)
+    .slice(0, RAIL_SIZE);
+  if (bdix.length >= 4) {
+    rails.push({ id: "bdix", label: "BDIX Fast", channels: bdix });
+  }
+
+  const live = channels
+    .filter((c) => c.status === "active")
+    .sort(homeRankSort)
+    .slice(0, RAIL_SIZE);
+  if (live.length >= 4) {
+    rails.push({ id: "live", label: "Trending Live", channels: live });
+  }
+
+  const topCats = [...catalog.categories]
+    .sort((a, b) => b.count - a.count || a.order - b.order)
+    .slice(0, 4);
+  for (const cat of topCats) {
+    const list = channels
+      .filter((c) => c.category === cat.id)
+      .sort(homeRankSort)
+      .slice(0, RAIL_SIZE);
+    if (list.length >= 4) {
+      rails.push({ id: cat.id, label: cat.label, channels: list });
+    }
+  }
+
+  return rails;
+}
+
 async function handleHlsProxy(request: Request, env: Env): Promise<Response> {
   if (env.HLS_PROXY_ENABLED !== "true") {
     return json({ error: "HLS proxy disabled" }, 403);
@@ -263,20 +323,70 @@ const worker = {
         );
       }
 
+      if (url.pathname === "/api/home") {
+        const rails = buildHomeRails(catalog);
+        return json(
+          {
+            rails,
+            categories: catalog.categories,
+            generatedAt: catalog.generatedAt,
+            stats: catalog.stats,
+          },
+          200,
+          { ...corsHeaders, "Cache-Control": "public, max-age=300" },
+        );
+      }
+
       if (url.pathname === "/api/categories") {
-        return json({ categories: catalog.categories, stats: catalog.stats }, 200, {
-          ...corsHeaders,
-          "Cache-Control": "public, max-age=600",
-        });
+        return json(
+          {
+            categories: catalog.categories,
+            stats: catalog.stats,
+            generatedAt: catalog.generatedAt,
+          },
+          200,
+          { ...corsHeaders, "Cache-Control": "public, max-age=600" },
+        );
       }
 
       if (url.pathname === "/api/channels") {
         const filtered = filterCatalog(catalog, url.searchParams);
+
+        // `ids` lookups and unpaginated callers get the full filtered list;
+        // otherwise paginate so we never ship the entire (multi-MB) catalog in
+        // a single response (keeps both the worker and any proxying frontend
+        // well within Cloudflare's per-request memory/time limits).
+        const idsParam = url.searchParams.get("ids");
+        if (idsParam) {
+          const want = idsParam.split(",").map((s) => s.trim()).filter(Boolean);
+          const byId = new Map(filtered.channels.map((c) => [c.id, c]));
+          const ordered = want
+            .map((id) => byId.get(id))
+            .filter((c): c is ApiChannel => Boolean(c));
+          return json(
+            { channels: ordered, categories: catalog.categories },
+            200,
+            corsHeaders,
+          );
+        }
+
+        const total = filtered.channels.length;
+        const limit = Math.min(
+          120,
+          Math.max(20, Number(url.searchParams.get("limit") ?? 60)),
+        );
+        const page = Math.max(1, Number(url.searchParams.get("page") ?? 1));
+        const totalPages = Math.ceil(total / limit) || 1;
+        const offset = (page - 1) * limit;
+        const channels = filtered.channels.slice(offset, offset + limit);
+
         return json(
           {
-            ...filtered,
+            channels,
+            categories: filtered.categories,
             generatedAt: catalog.generatedAt,
             stats: catalog.stats,
+            pagination: { page, limit, total, totalPages },
           },
           200,
           corsHeaders,

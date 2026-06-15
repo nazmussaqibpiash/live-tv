@@ -1,7 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getCatalog } from "@/lib/catalog";
+import { proxyToWorker } from "@/lib/worker-proxy";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const proxied = await proxyToWorker(request, "/api/categories");
+  if (proxied) return proxied;
+
   const catalog = await getCatalog();
 
   if (!catalog) {
