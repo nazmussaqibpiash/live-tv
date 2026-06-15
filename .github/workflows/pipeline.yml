@@ -39,10 +39,13 @@ jobs:
         env:
           PIPELINE_STEP: ${{ github.event.inputs.step || 'all' }}
           MAX_VALIDATE: "0"
-          VALIDATE_BATCH_SIZE: "2500"
-          VALIDATE_CONCURRENCY: "60"
-          VALIDATE_TIMEOUT_MS: "7000"
-          CRAWL_MAX_NEW: "20"
+          # Local timing: ~30ms/url @ concurrency 100 => full 42k pool ~21min,
+          # well within the 90min job budget. Big batch = whole pool in ~3 runs.
+          VALIDATE_BATCH_SIZE: "15000"
+          VALIDATE_CONCURRENCY: "100"
+          VALIDATE_TIMEOUT_MS: "6000"
+          VALIDATE_RECHECK: "800"
+          CRAWL_MAX_NEW: "30"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run pipeline:all
 
