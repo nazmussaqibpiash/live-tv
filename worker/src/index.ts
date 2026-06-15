@@ -96,6 +96,12 @@ function searchScore(term: string, name: string, group?: string): number {
   return 0;
 }
 
+const HOME_STATUS_ORDER: Record<string, number> = {
+  active: 0,
+  degraded: 1,
+  offline: 2,
+};
+
 function filterCatalog(
   catalog: CatalogPayload,
   params: URLSearchParams,
@@ -123,17 +129,24 @@ function filterCatalog(
       return (b.c.sources[0]?.rankScore ?? 0) - (a.c.sources[0]?.rankScore ?? 0);
     });
     channels = scored.map((x) => x.c);
+  } else {
+    // No search term: order by status (active first) then rank (fastest first),
+    // so the best/most-reliable channels surface by default in the UI.
+    channels = [...channels].sort((a, b) => {
+      const sa = HOME_STATUS_ORDER[a.status] ?? 9;
+      const sb = HOME_STATUS_ORDER[b.status] ?? 9;
+      if (sa !== sb) return sa - sb;
+      const ra = a.sources[0]?.rankScore ?? 0;
+      const rb = b.sources[0]?.rankScore ?? 0;
+      if (rb !== ra) return rb - ra;
+      return a.name.localeCompare(b.name);
+    });
   }
 
   return { categories: catalog.categories, channels };
 }
 
 const RAIL_SIZE = 20;
-const HOME_STATUS_ORDER: Record<string, number> = {
-  active: 0,
-  degraded: 1,
-  offline: 2,
-};
 
 function homeRankSort(a: ApiChannel, b: ApiChannel): number {
   const sa = HOME_STATUS_ORDER[a.status] ?? 9;
