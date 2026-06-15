@@ -346,6 +346,6 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 0
+    "deadStreak": 1
   }
 ]
