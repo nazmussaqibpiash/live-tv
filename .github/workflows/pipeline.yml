@@ -56,8 +56,16 @@ jobs:
           git add public/data/catalog.json public/data/kv-bulk.json public/data/epg.json \
             data/pipeline/state.json data/pipeline/validations.json data/pipeline/reports.json \
             data/source-registry.json 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "chore(pipeline): auto-update channel catalog"
-          git push
+          git diff --staged --quiet && { echo "no changes"; exit 0; }
+          git commit -m "chore(pipeline): auto-update channel catalog"
+          # The pipeline runs for a long time; the remote may have advanced
+          # (manual pushes, other workflows). Rebase + retry so we never fail
+          # the run on a non-fast-forward push.
+          for i in 1 2 3 4 5; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            echo "push attempt $i failed, retrying..."; sleep $((i * 5))
+          done
+          echo "::error::Failed to push catalog after retries"; exit 1
 
       # ---- Publish fresh catalog to Cloudflare so the live app updates ----
       # Use the API worker's KV binding explicitly (repo also has a frontend
