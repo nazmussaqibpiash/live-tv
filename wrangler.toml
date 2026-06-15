@@ -8,12 +8,11 @@ HLS_PROXY_ENABLED = "false"
 
 [[kv_namespaces]]
 binding = "CATALOG"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "2f6fa57c57d843da823189b2955a4abc"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "live-tv"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+# NOTE: D1 is not currently used by the worker (it reads only from KV).
+# If you add D1-backed features later, recreate the binding here and grant
+# the API token the "D1:Edit" permission.
 
 [observability]
 enabled = true

@@ -20,6 +20,9 @@ jobs:
     timeout-minutes: 90
     permissions:
       contents: write
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
     steps:
       - uses: actions/checkout@v4
@@ -55,3 +58,12 @@ jobs:
             data/source-registry.json 2>/dev/null || true
           git diff --staged --quiet || git commit -m "chore(pipeline): auto-update channel catalog"
           git push
+
+      # ---- Publish fresh catalog to Cloudflare so the live app updates ----
+      - name: Publish catalog to Cloudflare KV
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
+        run: npx wrangler kv bulk put public/data/kv-bulk.json --binding=CATALOG --remote
+
+      - name: Deploy worker
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' }}
+        run: npx wrangler deploy
