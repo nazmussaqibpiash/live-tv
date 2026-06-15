@@ -309,7 +309,8 @@
     "url": "https://raw.githubusercontent.com/MARIKO578/IPTV/master/playlist.m3u8",
     "type": "m3u",
     "region": "international",
-    "priority": 5
+    "priority": 5,
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-ashik4u-mrgify-clean-mai",
@@ -317,7 +318,8 @@
     "url": "https://raw.githubusercontent.com/ashik4u/mrgify-clean/main/playlist.m3u",
     "type": "m3u",
     "region": "international",
-    "priority": 5
+    "priority": 5,
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-denxvofficial-iptv-main-",
@@ -325,7 +327,8 @@
     "url": "https://raw.githubusercontent.com/denxvofficial/IPTV/main/iptv.m3u",
     "type": "m3u",
     "region": "international",
-    "priority": 5
+    "priority": 5,
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-saqe-streampk-main-playl",
@@ -333,6 +336,16 @@
     "url": "https://raw.githubusercontent.com/saqe/streampk/main/playlist.m3u8",
     "type": "m3u",
     "region": "international",
-    "priority": 5
+    "priority": 5,
+    "deadStreak": 0
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-tahsinulmohsin-jagobd-m3",
+    "name": "Auto: tahsinulmohsin/jagobd-m3u8-scraper",
+    "url": "https://raw.githubusercontent.com/tahsinulmohsin/jagobd-m3u8-scraper/master/playlist.m3u8",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
   }
 ]
