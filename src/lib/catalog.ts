@@ -106,6 +106,36 @@ export async function getCatalog(): Promise<CatalogPayload | null> {
   return loadLocalCatalog();
 }
 
+/**
+ * Fetch a SINGLE channel by id. Used by the /watch/[id] page so it never needs
+ * to pull the whole catalog (the worker now paginates /api/channels, so the
+ * full list is no longer available from one request).
+ */
+export async function getChannelById(
+  id: string,
+): Promise<ApiChannel | null> {
+  const workerUrl = process.env.NEXT_PUBLIC_WORKER_URL;
+  if (workerUrl) {
+    try {
+      const url = `${workerUrl.replace(/\/$/, "")}/api/channels?ids=${encodeURIComponent(id)}`;
+      const res = await fetch(url, {
+        next: { revalidate: 300 },
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        const data = (await res.json()) as { channels?: ApiChannel[] };
+        const found = data.channels?.find((c) => c.id === id) ?? null;
+        if (found) return found;
+      }
+    } catch {
+      /* fall through to local */
+    }
+  }
+
+  const local = loadLocalCatalog();
+  return local?.channels.find((c) => c.id === id) ?? null;
+}
+
 /** subsequence match for light typo/abbrev tolerance ("hbosp" -> "HBO Sports") */
 function isSubsequence(needle: string, hay: string): boolean {
   let i = 0;

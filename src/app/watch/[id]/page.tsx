@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LiveTvApp } from "@/components/live-tv-app";
-import { getCatalog } from "@/lib/catalog";
+import { getChannelById } from "@/lib/catalog";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -9,8 +9,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const catalog = await getCatalog();
-  const channel = catalog?.channels.find((c) => c.id === id);
+  const channel = await getChannelById(id);
 
   if (!channel) {
     return { title: "Live TV — Channel" };
@@ -35,8 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function WatchPage({ params }: Props) {
   const { id } = await params;
-  const catalog = await getCatalog();
-  const channel = catalog?.channels.find((c) => c.id === id);
+  const channel = await getChannelById(id);
   if (!channel) notFound();
   return <LiveTvApp initialChannelId={id} />;
 }
