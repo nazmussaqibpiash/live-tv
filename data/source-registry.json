@@ -346,6 +346,15 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 2
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-sajadtroy-openstream-mai",
+    "name": "Auto: SajadTroy/openstream",
+    "url": "https://raw.githubusercontent.com/SajadTroy/openstream/main/index.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
   }
 ]
