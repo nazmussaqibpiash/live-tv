@@ -10,6 +10,7 @@ import type { SourceFeed, ValidatedPlaylist } from "./types";
  * - scrape_site:    Base aggregator URL → auto-detect M3U + Xtream article pages
  * - scrape_m3u:     Direct article/page URL → extract M3U playlist URLs
  * - scrape_xtream:  Direct article/page URL → extract Xtream credentials
+ * - scrape_stalker: Scrape Stalker/STB portals → extract MAC + channels
  */
 
 const GRAB_TIMEOUT = 25000;
@@ -20,6 +21,18 @@ const SAMPLE_STREAMS_TO_TEST = 3;
 const USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0";
 const M3U_USER_AGENT = "VLC/3.0 LibVLC/3.0";
+
+// Regional filtering patterns
+const REGIONAL_CODES = {
+  FR: /\|FR\||\bFR\b|france|french/i,
+  AF: /\|AF\b|\bAF\b(?!T)|afrique|africa(?!n)|senegal|sn|cameroon|ivory\s*coast/i,
+  SN: /\|SN\||\bSN\b|senegal/i,
+  AFR: /\|AFR\||\bAFR\b|afrique/i,
+  BE: /\|BE\||\bBE\b|belgique|belgium/i,
+  CH: /\|CH\||\bCH\b|suisse|switzerland/i,
+  LU: /\|LU\||\bLU\b|luxembourg/i,
+  EU: /\|EU\||\bEU\b|europe/i,
+};
 
 const EXCLUDE_LINK_PATTERNS = [
   /\.(jpg|jpeg|png|gif|svg|ico|css|js|pdf|zip|rar|woff|ttf|webp)$/i,
@@ -66,6 +79,50 @@ export interface AggregatorPages {
   m3u: string[];
   xtream: string[];
   domain: string;
+}
+
+/**
+ * Check if a channel name matches target regions (FR, AF, SN, AFR, France, EU, BE, CH, LU).
+ * Detects regional codes like |FR|, |AF|, |SN|, |AFR| and country keywords.
+ */
+export function isChannelFromTargetRegion(channelName: string): boolean {
+  if (!channelName) return false;
+  
+  const nameLower = channelName.toLowerCase();
+  
+  // Reject false positives
+  if (nameLower.includes("singapore") || nameLower.includes("malaysia")) {
+    return false;
+  }
+  
+  // Check for regional codes and keywords
+  for (const pattern of Object.values(REGIONAL_CODES)) {
+    if (pattern.test(channelName)) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+/**
+ * Filter playlist to ensure 100% of channels match target regions.
+ * Returns null if playlist is mixed or has no matching channels.
+ */
+export function filterPureRegionalPlaylist(
+  channels: Array<{ name: string; url: string }>,
+): Array<{ name: string; url: string }> | null {
+  if (channels.length === 0) return null;
+  
+  const targetChannels = channels.filter((ch) => isChannelFromTargetRegion(ch.name));
+  
+  // Accept only if 100% or very high match rate (>95%)
+  const matchRate = targetChannels.length / channels.length;
+  if (matchRate >= 0.95) {
+    return targetChannels;
+  }
+  
+  return null;
 }
 
 /**
@@ -532,6 +589,7 @@ async function hasWorkingSampleStream(streamUrls: string[]): Promise<boolean> {
 /**
  * Validate that a playlist URL is fetchable, has enough channels,
  * and at least one sample stream responds.
+ * Applies regional filtering (FR/AF/SN/AFR/France/EU/BE/CH/LU).
  */
 export async function validatePlaylistUrl(
   m3uUrl: string,
@@ -548,6 +606,16 @@ export async function validatePlaylistUrl(
 
     const parsed = parseM3U(content);
     if (parsed.length < MIN_PLAYLIST_CHANNELS) return null;
+
+    // Apply regional filtering: only accept playlists with 95%+ target channels
+    const targetChannels = parsed.filter((ch) => isChannelFromTargetRegion(ch.name));
+    const matchRate = targetChannels.length / parsed.length;
+    if (matchRate < 0.95) {
+      console.log(
+        `[grab] Playlist rejected: only ${(matchRate * 100).toFixed(1)}% channels match target regions`,
+      );
+      return null;
+    }
 
     const streamUrls = parsed.map((ch) => ch.url).filter((u) => u.startsWith("http"));
     if (streamUrls.length === 0) return null;
