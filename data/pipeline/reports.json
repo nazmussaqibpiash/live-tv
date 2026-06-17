@@ -82,5 +82,40 @@
     "fails": 1,
     "lastError": "Video element error",
     "updatedAt": "2026-06-14T13:51:40.421Z"
+  },
+  "a095dc291282cab5": {
+    "sourceId": "a095dc291282cab5",
+    "channelId": "sport",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-16T19:39:13.932Z"
+  },
+  "d22787e663833b0b": {
+    "sourceId": "d22787e663833b0b",
+    "channelId": "cctv-world-geography",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-16T19:39:56.688Z"
+  },
+  "042ed8dc2f808940": {
+    "sourceId": "042ed8dc2f808940",
+    "channelId": "bein-sports-1-max-arabic",
+    "fails": 2,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-16T19:40:59.566Z"
+  },
+  "828dac4e5ca9c2af": {
+    "sourceId": "828dac4e5ca9c2af",
+    "channelId": "tnt-2",
+    "fails": 1,
+    "lastError": "Startup timeout",
+    "updatedAt": "2026-06-16T19:45:21.597Z"
+  },
+  "44d8843a78187045": {
+    "sourceId": "44d8843a78187045",
+    "channelId": "bein-sports-xtra",
+    "fails": 1,
+    "lastError": "Video element error",
+    "updatedAt": "2026-06-16T20:10:22.742Z"
   }
 }

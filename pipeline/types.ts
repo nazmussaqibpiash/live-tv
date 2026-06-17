@@ -63,14 +63,27 @@ export interface CatalogPayload {
   channels: ApiChannel[];
 }
 
+export type ScrapeFeedType = "scrape_site" | "scrape_m3u" | "scrape_xtream";
+
+export interface ValidatedPlaylist {
+  m3uUrl: string;
+  channelCount: number;
+  source: "direct" | "xtream";
+  portal?: string;
+  username?: string;
+  password?: string;
+}
+
 export interface SourceFeed {
   id: string;
   name: string;
   url: string;
-  type: string;
+  type: "m3u" | ScrapeFeedType;
   region: string;
   priority: number;
   maxChannels?: number;
+  /** max working playlists to keep from aggregator scrape (default 5) */
+  maxPlaylists?: number;
   /** consecutive crawl runs this feed returned no usable channels */
   deadStreak?: number;
 }

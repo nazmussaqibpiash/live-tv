@@ -340,15 +340,6 @@
     "deadStreak": 0
   },
   {
-    "id": "crawl-raw-githubusercontent-com-tahsinulmohsin-jagobd-m3",
-    "name": "Auto: tahsinulmohsin/jagobd-m3u8-scraper",
-    "url": "https://raw.githubusercontent.com/tahsinulmohsin/jagobd-m3u8-scraper/master/playlist.m3u8",
-    "type": "m3u",
-    "region": "international",
-    "priority": 5,
-    "deadStreak": 2
-  },
-  {
     "id": "crawl-raw-githubusercontent-com-sajadtroy-openstream-mai",
     "name": "Auto: SajadTroy/openstream",
     "url": "https://raw.githubusercontent.com/SajadTroy/openstream/main/index.m3u",
@@ -356,5 +347,14 @@
     "region": "international",
     "priority": 5,
     "deadStreak": 0
+  },
+  {
+    "id": "grab-world-iptv-club",
+    "name": "Grab: world-iptv.club",
+    "url": "https://world-iptv.club/",
+    "type": "scrape_site",
+    "region": "international",
+    "priority": 8,
+    "maxPlaylists": 5
   }
 ]
