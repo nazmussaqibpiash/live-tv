@@ -347,14 +347,5 @@
     "region": "international",
     "priority": 5,
     "deadStreak": 0
-  },
-  {
-    "id": "crawl-raw-githubusercontent-com-tahsinulmohsin-jagobd-m3",
-    "name": "Auto: tahsinulmohsin/jagobd-m3u8-scraper",
-    "url": "https://raw.githubusercontent.com/tahsinulmohsin/jagobd-m3u8-scraper/master/playlist.m3u8",
-    "type": "m3u",
-    "region": "international",
-    "priority": 5,
-    "deadStreak": 2
   }
 ]
