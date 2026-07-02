@@ -304,15 +304,6 @@
     "priority": 5
   },
   {
-    "id": "crawl-raw-githubusercontent-com-mariko578-iptv-master-pl",
-    "name": "Auto: MARIKO578/IPTV",
-    "url": "https://raw.githubusercontent.com/MARIKO578/IPTV/master/playlist.m3u8",
-    "type": "m3u",
-    "region": "international",
-    "priority": 5,
-    "deadStreak": 2
-  },
-  {
     "id": "crawl-raw-githubusercontent-com-ashik4u-mrgify-clean-mai",
     "name": "Auto: ashik4u/mrgify-clean",
     "url": "https://raw.githubusercontent.com/ashik4u/mrgify-clean/main/playlist.m3u",
@@ -343,6 +334,15 @@
     "id": "crawl-raw-githubusercontent-com-sajadtroy-openstream-mai",
     "name": "Auto: SajadTroy/openstream",
     "url": "https://raw.githubusercontent.com/SajadTroy/openstream/main/index.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-tahsinulmohsin-jagobd-m3",
+    "name": "Auto: tahsinulmohsin/jagobd-m3u8-scraper",
+    "url": "https://raw.githubusercontent.com/tahsinulmohsin/jagobd-m3u8-scraper/master/playlist.m3u8",
     "type": "m3u",
     "region": "international",
     "priority": 5,
