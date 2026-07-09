@@ -310,7 +310,7 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-denxvofficial-iptv-main-",
@@ -346,6 +346,6 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 0
+    "deadStreak": 1
   }
 ]
