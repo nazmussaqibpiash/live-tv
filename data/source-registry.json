@@ -338,5 +338,14 @@
     "region": "international",
     "priority": 5,
     "deadStreak": 0
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-shidul100-iptv-main-play",
+    "name": "Auto: shidul100/Iptv",
+    "url": "https://raw.githubusercontent.com/shidul100/Iptv/main/playlist.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
   }
 ]
