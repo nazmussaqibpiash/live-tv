@@ -355,7 +355,7 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 2
   },
   {
     "id": "crawl-raw-githubusercontent-com-tahsinulmohsin-jagobd-m3",
@@ -364,6 +364,6 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 2
   }
 ]
