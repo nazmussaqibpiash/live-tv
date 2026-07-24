@@ -355,7 +355,7 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 2
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-nathan-kansu-iptv-m3u-ma",
