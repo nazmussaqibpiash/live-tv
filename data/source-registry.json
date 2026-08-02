@@ -365,5 +365,14 @@
     "region": "international",
     "priority": 5,
     "deadStreak": 0
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-yasar323232-hue-m3u-play",
+    "name": "Auto: yasar323232-hue/M3u-playlist",
+    "url": "https://raw.githubusercontent.com/yasar323232-hue/M3u-playlist/main/iptv.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
   }
 ]
