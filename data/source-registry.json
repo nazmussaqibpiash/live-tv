@@ -364,7 +364,7 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-yasar323232-hue-m3u-play",
