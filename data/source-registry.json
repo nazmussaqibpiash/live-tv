@@ -364,7 +364,7 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 1
+    "deadStreak": 0
   },
   {
     "id": "crawl-raw-githubusercontent-com-yasar323232-hue-m3u-play",
@@ -374,14 +374,5 @@
     "region": "international",
     "priority": 5,
     "deadStreak": 0
-  },
-  {
-    "id": "crawl-raw-githubusercontent-com-masum8miah-cpu-my-ip-tv-",
-    "name": "Auto: masum8miah-cpu/my-ip-tv",
-    "url": "https://raw.githubusercontent.com/masum8miah-cpu/my-ip-tv/main/playlist.m3u",
-    "type": "m3u",
-    "region": "international",
-    "priority": 5,
-    "deadStreak": 2
   }
 ]
