@@ -382,12 +382,21 @@
     "type": "m3u",
     "region": "international",
     "priority": 5,
-    "deadStreak": 0
+    "deadStreak": 1
   },
   {
     "id": "crawl-raw-githubusercontent-com-sudtanj-iptv-master-inde",
     "name": "Auto: sudtanj/IPTV",
     "url": "https://raw.githubusercontent.com/sudtanj/IPTV/master/index.m3u",
+    "type": "m3u",
+    "region": "international",
+    "priority": 5,
+    "deadStreak": 0
+  },
+  {
+    "id": "crawl-raw-githubusercontent-com-adam-zs-iptv-ru-ua-main-",
+    "name": "Auto: Adam-ZS/iptv-ru-ua",
+    "url": "https://raw.githubusercontent.com/Adam-ZS/iptv-ru-ua/main/playlist.m3u",
     "type": "m3u",
     "region": "international",
     "priority": 5,
