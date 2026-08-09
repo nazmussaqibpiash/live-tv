@@ -376,15 +376,6 @@
     "deadStreak": 0
   },
   {
-    "id": "crawl-raw-githubusercontent-com-masum8miah-cpu-my-ip-tv-",
-    "name": "Auto: masum8miah-cpu/my-ip-tv",
-    "url": "https://raw.githubusercontent.com/masum8miah-cpu/my-ip-tv/main/playlist.m3u",
-    "type": "m3u",
-    "region": "international",
-    "priority": 5,
-    "deadStreak": 2
-  },
-  {
     "id": "crawl-raw-githubusercontent-com-sudtanj-iptv-master-inde",
     "name": "Auto: sudtanj/IPTV",
     "url": "https://raw.githubusercontent.com/sudtanj/IPTV/master/index.m3u",
